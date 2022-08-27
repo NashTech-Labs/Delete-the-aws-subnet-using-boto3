@@ -1,3 +1,4 @@
+#By MuZakkir Saifi
 # import logging for get the logs in  execution
 import logging
 # import the boto3 which will use to interact  with the aws
@@ -9,7 +10,7 @@ REGION = input("Please enter the AWS REGION")
 
 # this is the configration for the logger_for
 
-logger_for = logging.getlogger_for()
+logger_for = logging.getLogger()
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s: %(levelname)s: %(message)s')
 
@@ -19,7 +20,7 @@ response = boto3.client("ec2", region_name=REGION)
 def del_subnet(subnet_id):
   
     try:
-        res = response.del_subnet(SubnetId=subnet_id)
+        res = response.delete_subnet(SubnetId=subnet_id)
 
     except ClientError:
         logger_for.exception('Oops sorry, Your subnet can not be deleted.')
